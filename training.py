@@ -1,4 +1,5 @@
 import pathlib
+from numpy import dtype
 
 from sklearn.utils import shuffle
 from utils import DatasetImages
@@ -115,3 +116,33 @@ for epoch in tqdm(range(config.epochs)):
 
         # Adversarial ground truths
         valid = 0.9 * torch.ones(n_samples, 1, device=device, dtype=torch.float32)
+        fake = torch.zeros(n_samples, 1, device=device, dtype=torch.float32)
+
+        # Training D
+        optim_D.zero_grad()
+
+        # D loss on real
+        real_images = images.to(device)
+        d_out = discriminator(real_images)
+        real_loss = adversarial_loss(d_out, valid)
+        real_loss.backward()
+
+        # D loss on fake
+        z = torch.randn(n_samples, config.latent_dim).to(device)
+        generated_images = generator(z)
+        d_fake_out = discriminator(generated_images.detach())
+
+        fake_loss = adversarial_loss(d_fake_out, fake)
+        fake_loss.backward()
+
+        optim_D.step()
+
+        # Training D
+        optim_G.zero_grad()
+
+        # G loss
+        d_fake_out2 = discriminator(generated_images)
+        g_loss = adversarial_loss(d_fake_out2, valid)
+
+        g_loss.backward()
+        optim_G.step()
