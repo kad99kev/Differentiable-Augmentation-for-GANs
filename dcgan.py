@@ -13,7 +13,7 @@ def init_weights_(module) -> None:
     cls_name = module.__class__.__name__
 
     if cls_name in {"Conv2d", "ConvTranspose2d"}:
-        nn.init_normal_(module.weight.data, 0.0, 0.02)
+        nn.init.normal_(module.weight.data, 0.0, 0.02)
 
     elif cls_name == "BatchNorm2d":
         nn.init.normal_(module.weight.data, 1.0, 0.02)
