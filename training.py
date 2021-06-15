@@ -33,7 +33,7 @@ def main() -> None:
     generator = Generator(latent_dim=config.latent_dim, ngf=config.ngf)
     discriminator = Discriminator(
         ndf=config.ndf,
-        augement_module=augment_module if config.augment_module else None,
+        augement_module=augment_module if config.augment else None,
     )
 
     # Shift models to device
