@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 
-def init_weights_(module):
+def init_weights_(module) -> None:
     """
     Initialize weight by sampling from a normal distribution.
     This operation modifies the weights in place.
@@ -119,7 +119,7 @@ class Discriminator(nn.Module):
         else:
             self.augment_module = nn.Identity()
 
-    def forward(self, inputs: torch.Tensor):
+    def forward(self, inputs: torch.Tensor) -> torch.Tensor:
         """
         Forward Pass.
 
@@ -127,7 +127,7 @@ class Discriminator(nn.Module):
             inputs (torch.Tensor): Input images of shape` (n_samples, 3, 128, 128)`.
 
         Returns:
-            Classification ouputs of shape `(n_samples, 1)`.
+            torch.Tensor: Classification ouputs of shape `(n_samples, 1)`.
         """
         if self.training:
             x = self.augment_module(inputs)
