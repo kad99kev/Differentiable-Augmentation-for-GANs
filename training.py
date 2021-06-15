@@ -74,7 +74,7 @@ def main() -> None:
     output_path.mkdir(exist_ok=True, parents=True)
 
     # Wandb
-    wandb.init(config=config, project="DiffAug")
+    wandb.init(config=config, project="DiffAug", name=config.name)
 
     # Log true data
     wandb.log(
