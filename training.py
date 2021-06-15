@@ -10,11 +10,11 @@ from tqdm import tqdm
 
 from dcgan import Generator, Discriminator, init_weights_
 from utils import DatasetImages
-from config import Config
+from parse import parse_args
 
 
 def main() -> None:
-    config = Config(name="DiffAug with DCGAN")
+    config = parse_args()
 
     image_size = 128
 
