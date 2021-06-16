@@ -55,7 +55,7 @@ def main() -> None:
     )
 
     # Dataset
-    dataset = DatasetImages(data_path, transform=transforms)
+    dataset = DatasetImages(data_path, transform=transform)
     dataloader = DataLoader(dataset, batch_size=config.batch_size, shuffle=True)
 
     # Optimizers
