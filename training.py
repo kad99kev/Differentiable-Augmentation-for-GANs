@@ -79,11 +79,14 @@ def main() -> None:
     # Log true data
     wandb.log(
         {
-            "true_data": make_grid(
-                torch.stack([dataset[i] for i in range(n_mosaic_cells)]),
-                **mosaic_kwargs
+            "true_data": wandb.Image(
+                make_grid(
+                    torch.stack([dataset[i] for i in range(n_mosaic_cells)]),
+                    **mosaic_kwargs
+                )
             )
-        }
+        },
+        commit=False,
     )
 
     # Log augmented data
@@ -91,7 +94,10 @@ def main() -> None:
         n_mosaic_cells, 1, 1, 1
     )
     batch_showcase_aug = discriminator.augment_module(batch_showcase)
-    wandb.log({"augmented_data": make_grid(batch_showcase_aug, **mosaic_kwargs)})
+    wandb.log(
+        {"augmented_data": wandb.Image(make_grid(batch_showcase_aug, **mosaic_kwargs))},
+        commit=False,
+    )
 
     # Prepare evaluation noise
     z_eval = torch.randn(n_mosaic_cells, config.latent_dim).to(device)
@@ -141,7 +147,7 @@ def main() -> None:
                     {
                         "d_out": d_out.mean().item(),
                         "d_fake_out": d_fake_out.mean().item(),
-                        "d_fake_out2": d_fake_out2.mean().item,
+                        "d_fake_out2": d_fake_out2.mean().item(),
                         "discriminator_loss": (real_loss + fake_loss).item(),
                         "generator_loss": g_loss.item(),
                     },
@@ -157,7 +163,12 @@ def main() -> None:
 
                 # Generate mosaic
                 wandb.log(
-                    {"fake": make_grid(g_eval_images.data, **mosaic_kwargs)}, step=epoch
+                    {
+                        "fake": wandb.Image(
+                            make_grid(g_eval_images.data, **mosaic_kwargs)
+                        )
+                    },
+                    step=epoch,
                 )
 
                 # Save checkpoint
