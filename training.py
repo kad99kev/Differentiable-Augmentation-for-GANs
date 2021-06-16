@@ -60,10 +60,10 @@ def main() -> None:
 
     # Optimizers
     optim_G = torch.optim.Adam(
-        generator.parameters(), lr=config.lr, betas=(config.beta_1, config.beta_2)
+        generator.parameters(), lr=config.lr, betas=(config.beta1, config.beta2)
     )
     optim_D = torch.optim.Adam(
-        discriminator.parameters(), lr=config.lr, betas=(config.beta_1, config.beta_2)
+        discriminator.parameters(), lr=config.lr, betas=(config.beta1, config.beta2)
     )
 
     # Loss
