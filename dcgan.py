@@ -109,7 +109,7 @@ class Discriminator(nn.Module):
             nn.BatchNorm2d(ndf * 16),
             nn.LeakyReLU(0.2, inplace=True),
             # (ndf * 16) x 4 x 4
-            nn.Conv2d(ndf * 16, 1, 4, 2, 1, bias=False),
+            nn.Conv2d(ndf * 16, 1, 4, 1, 0, bias=False),
             nn.Sigmoid()
             # 1 x 1 x 1
         )
