@@ -50,7 +50,7 @@ def parse_args(argv=None) -> argparse.Namespace:
         help="Number of generator feature maps before last tranpose convolution",
     )
     parser.add_argument(
-        "--e", "--epochs", type=int, default=200, help=" Number of training epochs"
+        "-e", "--epochs", type=int, default=200, help=" Number of training epochs"
     )
     parser.add_argument(
         "--mosaic-size", type=int, default=10, help="Size of the rectangular mosaic"
