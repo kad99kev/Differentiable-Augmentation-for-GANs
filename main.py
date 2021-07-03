@@ -8,9 +8,9 @@ from torch.utils.data import DataLoader
 from torchvision.utils import make_grid
 from tqdm import tqdm
 
-from dcgan import Generator, Discriminator, init_weights_
-from utils import DatasetImages
-from parse import parse_args
+from models.dcgan import Generator, Discriminator, init_weights_
+from utils.dataset import DatasetImages
+from utils.parse import parse_args
 
 
 def main() -> None:
