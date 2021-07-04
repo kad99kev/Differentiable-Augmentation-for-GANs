@@ -18,7 +18,7 @@ def main() -> None:
     if config.model == "dcgan":
         from models.dcgan import Generator, Discriminator, init_weights_
     else:
-        from models.dcgan import Generator, Discriminator, init_weights_
+        from models.sagan import Generator, Discriminator, init_weights_
 
     image_size = 128
 
