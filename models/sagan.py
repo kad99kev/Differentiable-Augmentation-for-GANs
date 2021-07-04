@@ -38,7 +38,7 @@ class SelfAttention(nn.Module):
             in_channels=input_dim, out_channels=input_dim // 2, kernel_size=1
         )
         self.value_conv = nn.Conv2d(
-            in_channels=input_dim, out_channels=input_dim // 2, kernel_size=1
+            in_channels=input_dim, out_channels=input_dim, kernel_size=1
         )
 
         self.gamma = nn.Parameter(torch.zeros(1))
