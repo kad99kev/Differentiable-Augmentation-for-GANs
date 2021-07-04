@@ -163,7 +163,7 @@ class Discriminator(nn.Module):
             nn.LeakyReLU(0.2, inplace=True),
             SelfAttention(ndf * 4),
             # (ndf * 4) x 16 x 16
-            nn.utils.spectral_norm(n.Conv2d(ndf * 4, ndf * 8, 4, 2, 1, bias=False)),
+            nn.utils.spectral_norm(nn.Conv2d(ndf * 4, ndf * 8, 4, 2, 1, bias=False)),
             nn.BatchNorm2d(ndf * 8),
             nn.LeakyReLU(0.2, inplace=True),
             SelfAttention(ndf * 8),
