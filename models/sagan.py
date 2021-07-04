@@ -65,7 +65,7 @@ class SelfAttention(nn.Module):
         out = out.view(batch_size, C, width, height)
 
         out = self.gamma * out + x
-        return out, attn
+        return out
 
 
 class Generator(nn.Module):
