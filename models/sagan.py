@@ -115,7 +115,6 @@ class Generator(nn.Module):
             nn.BatchNorm2d(ngf),
             nn.ReLU(True),
             # (ngf * 2) x 64 x 64
-            SelfAttention(ngf),
             nn.ConvTranspose2d(ngf, 3, 4, 2, 1, bias=False),
             nn.Tanh(),
             # 3 x 128 x 128
@@ -171,7 +170,6 @@ class Discriminator(nn.Module):
             nn.utils.spectral_norm(nn.Conv2d(ndf * 8, ndf * 16, 4, 2, 1, bias=False)),
             nn.BatchNorm2d(ndf * 16),
             nn.LeakyReLU(0.2, inplace=True),
-            SelfAttention(ndf * 16),
             # (ndf * 16) x 4 x 4
             nn.Conv2d(ndf * 16, 1, 4, 1, 0, bias=False),
             nn.Sigmoid()
