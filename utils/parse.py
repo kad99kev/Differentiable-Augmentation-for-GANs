@@ -12,6 +12,14 @@ def parse_args(argv=None) -> argparse.Namespace:
         action="store_true",
         help="If True, augmentations are applied",
     )
+    parser.add_argument(
+        "-m",
+        "--model",
+        type=str,
+        default="dcgan",
+        choices=["dcgan", "sagan"],
+        help="Type of model architecture",
+    )
     parser.add_argument("-b", "--batch_size", type=int, default=16, help="Batch Size")
     parser.add_argument(
         "--beta1", type=float, default=0.5, help="Adam optimizer hyperparameter"
